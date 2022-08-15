@@ -1,28 +1,34 @@
 package com.bridgelabz;
 
 public class EmployeeWage {
-    public static final int IS_PRESENT = 1;
-    public static final int IS_ABSENT = 0;
-    public static final int IS_PARTTIME = 2;
-    static int wagePerHour = 20;
-    static int fullDayHour = 8;
-    static int partTimeHour = 4;
-    public static void main(String[] args){
-        System.out.println("welcome to Employee Wages");
-        int attendenceCheck = (int)(Math.random()*10%3);
-        System.out.println(attendenceCheck);
-        if( attendenceCheck == IS_PRESENT )
-        {
-            System.out.println("Employee is Present for fullday");
-            System.out.println("Daily Employee Wage"+ wagePerHour*fullDayHour);
-        }
-        else if (attendenceCheck == IS_PARTTIME) {
-            System.out.println("Employee is Part time");
-            System.out.println("part time wage is =>"+" "+partTimeHour*wagePerHour);
+    static final int IS_FULL_TIME = 2;
+    static final int IS_PART_TIME = 1;
+    static final int WAGE_PER_HOUR = 20;
+    static final int FULL_DAY_HOUR = 10;
+    static final int PART_TIME_HOUR= 8;
 
+    public static void main(String[] args) {
+        int attendance;
+        int dailyWage = 0;
+        System.out.println("Welcome to Employee Wage Computation");
+        attendance = checkAttendance();
+        switch (attendance) {
+            case IS_FULL_TIME:
+                System.out.println("Employee is full time");
+                dailyWage = WAGE_PER_HOUR * FULL_DAY_HOUR;
+                break;
+            case IS_PART_TIME:
+                System.out.println("Employee is part time");
+                dailyWage = WAGE_PER_HOUR * PART_TIME_HOUR;
+                break;
+            default:
+                System.out.println("Employee is Absent");
+                break;
         }
-        else {
-            System.out.println("Employee is absent");
-        }
+        System.out.println("Daily Wage = "+dailyWage);
+    }
+    static int checkAttendance(){
+       int random = (int) ((Math.random()*10)%3);
+       return random;
     }
 }
