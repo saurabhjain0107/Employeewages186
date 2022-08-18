@@ -1,47 +1,43 @@
 package com.bridgelabz;
 
 public class EmployeeWage {
+    static final int IS_FULL_TIME= 1;
+    static final int IS_PART_TIME = 2;
+    static final int PART_TIME_HR=5;
+    static final int FULL_DAY_HR=10;
+    static final int WAGE_PER_HR = 20;
+    static final int TOTAL_WORKING_DAYS = 20;
+    static final int TOTAL_WORKING_HRS=100;
 
-    static final int IS_FULL_TIME=2;
-    static final int IS_PART_TIME=1;
-    static final int WAGE_PER_HOUR=20;
-    static final int FULL_DAY_HOUR=10;
-    static final int PART_TIME_HOUR=5;
     public static void main(String[] args) {
-        int attendance;
-        int dailyWage=0;
-        int day=1;
-        int totalWage=0;
-
-        System.out.println("Welcome to Employee Wage Computation");
-
-        while (day <=20) {
-            System.out.println("Day #"+day);
-            attendance = checkAttendance();
-
-            switch (attendance) {
+        System.out.println("Welcome to Employee Wage !");
+        int day = 1;
+        int TotalWages=0;
+        int WorkingHr=0;
+        while (day < TOTAL_WORKING_DAYS && WorkingHr<TOTAL_WORKING_HRS) {
+            double empCheck = Math.floor(Math.random() * 10) % 3;
+            int dailywage = 0;
+            switch ((int) empCheck) {
                 case IS_FULL_TIME:
-                    System.out.println("Employee is full time");
-                    dailyWage = WAGE_PER_HOUR * FULL_DAY_HOUR;
-                    totalWage+=dailyWage;
+                    System.out.println("Employee is Present Full Time");
+                    dailywage =WAGE_PER_HR*FULL_DAY_HR;
+                    WorkingHr+=FULL_DAY_HR;
                     break;
                 case IS_PART_TIME:
-                    System.out.println("Employee is part time");
-                    dailyWage = WAGE_PER_HOUR * PART_TIME_HOUR;
-                    totalWage+=dailyWage;
+                    System.out.println("Employee is Present Part Time");
+                    dailywage = WAGE_PER_HR*PART_TIME_HR;
+                    WorkingHr+=PART_TIME_HR;
                     break;
                 default:
                     System.out.println("Employee is Absent");
-                    break;
             }
-
-            System.out.println("Daily Wage = " + dailyWage);
+            System.out.println("Daily Wage for Day="+ day + " is="+dailywage);
+            TotalWages+=dailywage;
             day++;
+            System.out.println();
         }
-        System.out.println("Total Wage of month= "+totalWage);
-    }
-    static int checkAttendance(){
-        int random=(int)(Math.random()*10)%3;
-        return random;
+        System.out.println("Total Working Hrs"+WorkingHr);
+        System.out.println("Total Working Days"+(day-1));
+        System.out.println("Total wages for Month="+TotalWages);
     }
 }
